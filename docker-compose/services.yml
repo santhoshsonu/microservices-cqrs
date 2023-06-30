@@ -1,0 +1,54 @@
+---
+version: '3.9'
+
+services:
+  mongo:
+    image: mongo:${MONGO_VERSION}
+    container_name: banking_mongo_db
+    restart: always
+    volumes:
+      - "banking_mongo_data:/data/db"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PWD}
+    networks:
+      - ${GLOBAL_NETWORK:-banking}
+
+  #  mongo-express:
+  #    image: mongo-express
+  #    restart: always
+  #    ports:
+  #      - 8081:8081
+  #    environment:
+  #      ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGO_USER}
+  #      ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_PWD}
+  #      ME_CONFIG_MONGODB_URL: mongodb://${MONGO_USER}:${MONGO_PWD}@mongo:27017/
+  #    networks:
+  #      - ${GLOBAL_NETWORK:-kafka}
+
+  mysql:
+    image: mysql:${MYSQL_VERSION}
+    container_name: banking_mysql_db
+    restart: always
+    volumes:
+      - "banking_mysql_data:/data/db"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PWD}
+    networks:
+      - ${GLOBAL_NETWORK:-banking}
+
+#  adminer:
+#    image: adminer
+#    restart: always
+#    ports:
+#      - 8080:8080
+#    environment:
+#      ADMINER_DEFAULT_SERVER: banking_mysql_db
+#    networks:
+#      - ${GLOBAL_NETWORK:-banking}
+
+volumes:
+  banking_mongo_data:
+    driver: local
+  banking_mysql_data:
+    driver: local
