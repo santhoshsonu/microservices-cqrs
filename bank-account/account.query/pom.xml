@@ -9,8 +9,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>account.cmd</artifactId>
-    <name>account-cmd</name>
+    <artifactId>account.query</artifactId>
+    <name>account-query</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -71,7 +71,23 @@
                             <goal>build-image</goal>
                         </goals>
                     </execution>
+                    <execution>
+                        <id>repackage</id>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                        <configuration>
+                            <finalName>${project.name}</finalName>
+                        </configuration>
+                    </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.graalvm.buildtools</groupId>
+                <artifactId>native-maven-plugin</artifactId>
+                <configuration>
+                    <imageName>${project.name}</imageName>
+                </configuration>
             </plugin>
         </plugins>
     </build>

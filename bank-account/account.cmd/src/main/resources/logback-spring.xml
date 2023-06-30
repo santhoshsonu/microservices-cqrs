@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-  <property name="DEV_HOME" value="./account.query/logs"/>
-  <property name="APP_NAME" value="account-query"/>
+  <property name="DEV_HOME" value="./logs"/>
+  <property name="APP_NAME" value="account-cmd"/>
 
   <include resource="logback-common.xml"/>
 </configuration>

@@ -1,0 +1,77 @@
+version: "3.9"
+
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    ports:
+      - "2181:2181"
+    environment:
+      ZOOKEEPER_SERVER_ID: 1
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+      ZOOKEEPER_INIT_LIMIT: 5
+      ZOOKEEPER_SYNC_LIMIT: 2
+    networks:
+      - banking-network
+
+  kafka-broker-1:
+    image: confluentinc/cp-kafka:latest
+    ports:
+      - "9092:9092"
+    environment:
+      ALLOW_PLAINTEXT_LISTENER: yes
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka-broker-1:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,LISTENER_LOCAL:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_COMPRESSION_TYPE: producer
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+    depends_on:
+      - zookeeper
+    networks:
+      - banking-network
+
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: Passw0rd#007
+    volumes:
+      - ./data:/data/db
+    networks:
+      - banking-network
+
+  mysql:
+    image: mysql:latest
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: Passw0rd#007
+      MYSQL_DATABASE: bankingAccount
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+    networks:
+      - banking-network
+
+  account-query:
+    container_name: account-query
+    build:
+      context: ../account.query
+      dockerfile: ../account.query/Dockerfile
+    image: account-query:latest
+    ports:
+      - '5000:5000'
+    networks:
+      - banking-network
+
+volumes:
+  mysql-data:
+
+networks:
+  banking-network:
+    driver: bridge

@@ -1,5 +1,6 @@
----
+
 version: '3.9'
+
 services:
   zookeeper:
     image: confluentinc/cp-zookeeper:${KAFKA_VERSION}
@@ -111,7 +112,7 @@ services:
 #      - ${GLOBAL_NETWORK:-kafka}
 
 volumes:
-  zookeeper_data:
-    driver: local
-  kafka_data:
-    driver: local
+  - zookeeper_data:
+      driver: local
+  - kafka_data:
+      driver: local
