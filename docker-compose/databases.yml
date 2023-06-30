@@ -6,6 +6,8 @@ services:
     image: mongo:${MONGO_VERSION}
     container_name: banking_mongo_db
     restart: always
+    ports:
+      - "27017:27017"
     volumes:
       - "banking_mongo_data:/data/db"
     environment:
@@ -14,29 +16,33 @@ services:
     networks:
       - ${GLOBAL_NETWORK:-banking}
 
-  #  mongo-express:
-  #    image: mongo-express
-  #    restart: always
-  #    ports:
-  #      - 8081:8081
-  #    environment:
-  #      ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGO_USER}
-  #      ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_PWD}
-  #      ME_CONFIG_MONGODB_URL: mongodb://${MONGO_USER}:${MONGO_PWD}@mongo:27017/
-  #    networks:
-  #      - ${GLOBAL_NETWORK:-kafka}
-
   mysql:
     image: mysql:${MYSQL_VERSION}
     container_name: banking_mysql_db
     restart: always
+    ports:
+      - "3306:3306"
     volumes:
-      - "banking_mysql_data:/data/db"
+      - "banking_mysql_data:/var/lib/mysql"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PWD}
     networks:
       - ${GLOBAL_NETWORK:-banking}
 
+# MongoDB Client App
+#  mongo-express:
+#    image: mongo-express
+#    restart: always
+#    ports:
+#      - 8081:8081
+#    environment:
+#      ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGO_USER}
+#      ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_PWD}
+#      ME_CONFIG_MONGODB_URL: mongodb://${MONGO_USER}:${MONGO_PWD}@mongo:27017/
+#    networks:
+#      - ${GLOBAL_NETWORK:-kafka}
+
+# MySQL Client App
 #  adminer:
 #    image: adminer
 #    restart: always
