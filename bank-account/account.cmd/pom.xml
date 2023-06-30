@@ -14,6 +14,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <cqrs-core.version>0.0.1-SNAPSHOT</cqrs-core.version>
     </properties>
 
     <dependencies>
@@ -21,6 +22,11 @@
         <dependency>
             <groupId>com.microservices.cqrs</groupId>
             <artifactId>account.common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.microservices.cqrs</groupId>
+            <artifactId>cqrs-core</artifactId>
+            <version>${cqrs-core.version}</version>
         </dependency>
 
         <!-- SPRING BOOT -->
