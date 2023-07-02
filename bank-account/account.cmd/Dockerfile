@@ -38,8 +38,8 @@ RUN mvn --no-transfer-progress clean package -Pnative
 # The deployment Image
 FROM docker.io/oraclelinux:8-slim
 
-EXPOSE 5001
+EXPOSE 5000
 
 # Copy the native executable into the containers
-COPY --from=builder /build/target/account-query.jar ./
-ENTRYPOINT ["/account-query"]
+COPY --from=builder /build/target/account-cmd.jar ./app.jar
+ENTRYPOINT ["java", "-jar", "./app.jar"]

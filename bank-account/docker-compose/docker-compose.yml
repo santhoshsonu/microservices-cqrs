@@ -58,16 +58,29 @@ services:
     networks:
       - banking-network
 
-  account-query:
-    container_name: account-query
+  account-cmd:
+    container_name: account-cmd
     build:
-      context: ../account.query
-      dockerfile: ../account.query/Dockerfile
-    image: account-query:latest
+      context: ../account.cmd
+      dockerfile: ../account.cmd/Dockerfile
+#      args:
+#        APP_FILE: ./target/account-cmd.jar
+    image: account-cmd:latest
     ports:
       - '5000:5000'
     networks:
       - banking-network
+
+#  account-query:
+#    container_name: account-query
+#    build:
+#      context: ../account.query
+#      dockerfile: ../account.query/Dockerfile
+#    image: account-query:latest
+#    ports:
+#      - '5001:5001'
+#    networks:
+#      - banking-network
 
 volumes:
   mysql-data:
