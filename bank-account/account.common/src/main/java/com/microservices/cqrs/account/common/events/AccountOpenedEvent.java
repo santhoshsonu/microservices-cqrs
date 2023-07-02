@@ -1,7 +1,9 @@
 package com.microservices.cqrs.account.common.events;
 
 import com.microservices.cqrs.account.common.dto.AccountType;
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
+
+import com.microservices.cqrs.core.events.BaseEvent;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -18,6 +20,6 @@ import lombok.experimental.SuperBuilder;
 public class AccountOpenedEvent extends BaseEvent {
   private String accountHolder;
   private AccountType accountType;
-  private LocalDateTime createdDate;
+  private ZonedDateTime createdDate;
   private double openingBalance;
 }

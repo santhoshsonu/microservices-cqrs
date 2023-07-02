@@ -1,6 +1,6 @@
-package com.microservices.cqrs.account.common.domain;
+package com.microservices.cqrs.core.domain;
 
-import com.microservices.cqrs.account.common.events.BaseEvent;
+import com.microservices.cqrs.core.events.BaseEvent;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;

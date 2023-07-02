@@ -1,4 +1,4 @@
-package com.microservices.cqrs.account.common.messages;
+package com.microservices.cqrs.core.messages;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

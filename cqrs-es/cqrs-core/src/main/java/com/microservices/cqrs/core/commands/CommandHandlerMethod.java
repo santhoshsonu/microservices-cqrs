@@ -1,4 +1,4 @@
-package com.microservices.cqrs.account.common.commands;
+package com.microservices.cqrs.core.commands;
 
 @FunctionalInterface
 public interface CommandHandlerMethod<T extends BaseCommand> {

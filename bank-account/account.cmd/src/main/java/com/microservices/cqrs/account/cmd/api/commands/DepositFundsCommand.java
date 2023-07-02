@@ -1,6 +1,6 @@
 package com.microservices.cqrs.account.cmd.api.commands;
 
-import com.microservices.cqrs.account.common.commands.BaseCommand;
+import com.microservices.cqrs.core.commands.BaseCommand;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;

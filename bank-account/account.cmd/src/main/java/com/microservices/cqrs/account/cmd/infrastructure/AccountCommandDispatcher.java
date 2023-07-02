@@ -2,9 +2,9 @@ package com.microservices.cqrs.account.cmd.infrastructure;
 
 import static java.util.Objects.isNull;
 
-import com.microservices.cqrs.account.common.commands.BaseCommand;
-import com.microservices.cqrs.account.common.commands.CommandDispatcher;
-import com.microservices.cqrs.account.common.commands.CommandHandlerMethod;
+import com.microservices.cqrs.core.commands.BaseCommand;
+import com.microservices.cqrs.core.commands.CommandDispatcher;
+import com.microservices.cqrs.core.commands.CommandHandlerMethod;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;

@@ -1,6 +1,6 @@
-package com.microservices.cqrs.account.common.commands;
+package com.microservices.cqrs.core.commands;
 
-import com.microservices.cqrs.account.common.messages.Message;
+import com.microservices.cqrs.core.messages.Message;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

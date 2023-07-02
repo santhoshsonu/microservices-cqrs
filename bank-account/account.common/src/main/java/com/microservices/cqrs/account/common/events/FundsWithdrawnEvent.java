@@ -1,5 +1,6 @@
 package com.microservices.cqrs.account.common.events;
 
+import com.microservices.cqrs.core.events.BaseEvent;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
