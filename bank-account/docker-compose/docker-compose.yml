@@ -61,10 +61,12 @@ services:
   account-cmd:
     container_name: account-cmd
     build:
-      context: ../account.cmd
-      dockerfile: ../account.cmd/Dockerfile
+      context: ../../
+      dockerfile: ./bank-account/account.cmd/Dockerfile
 #      args:
 #        APP_FILE: ./target/account-cmd.jar
+    depends_on:
+      - mongodb
     image: account-cmd:latest
     ports:
       - '5000:5000'

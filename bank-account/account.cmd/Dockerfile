@@ -30,16 +30,17 @@ ENV MAVEN_CONFIG "$USER_HOME_DIR/.m2"
 WORKDIR /build
 
 # Copy the source code into the image for building
-COPY . /build
+COPY .  /build
 
 # Build
 RUN mvn --no-transfer-progress clean package -Pnative
 
 # The deployment Image
-FROM docker.io/oraclelinux:8-slim
+FROM ghcr.io/graalvm/graalvm-ce:ol9-java17-22.3.2
+
+# Copy the native executable into the containers
+COPY --from=builder /build/bank-account/account.cmd/target/account-cmd.jar ./app.jar
 
 EXPOSE 5000
 
-# Copy the native executable into the containers
-COPY --from=builder /build/target/account-cmd.jar ./app.jar
 ENTRYPOINT ["java", "-jar", "./app.jar"]
