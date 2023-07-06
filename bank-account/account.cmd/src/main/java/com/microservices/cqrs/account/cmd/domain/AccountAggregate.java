@@ -1,15 +1,13 @@
 package com.microservices.cqrs.account.cmd.domain;
 
 import com.microservices.cqrs.account.cmd.api.commands.OpenAccountCommand;
-import com.microservices.cqrs.core.domain.AggregateRoot;
 import com.microservices.cqrs.account.common.events.AccountClosedEvent;
 import com.microservices.cqrs.account.common.events.AccountOpenedEvent;
 import com.microservices.cqrs.account.common.events.FundsDepositedEvent;
 import com.microservices.cqrs.account.common.events.FundsWithdrawnEvent;
-
-import java.time.ZoneId;
+import com.microservices.cqrs.core.domain.AggregateRoot;
+import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
-
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
@@ -24,7 +22,7 @@ public class AccountAggregate extends AggregateRoot {
             .accountHolder(command.getAccountHolder())
             .accountType(command.getAccountType())
             .openingBalance(command.getOpeningBalance())
-            .createdDate(ZonedDateTime.now(ZoneId.of("UTC")))
+            .createdDate(ZonedDateTime.now(ZoneOffset.UTC))
             .build());
   }
 

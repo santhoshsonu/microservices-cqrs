@@ -8,6 +8,7 @@
         <version>3.1.1</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+
     <groupId>com.microservices.cqrs</groupId>
     <artifactId>cqrs-sample</artifactId>
     <version>0.0.1-SNAPSHOT</version>
@@ -27,11 +28,11 @@
     </properties>
 
     <modules>
-        <module>../cqrs-es/cqrs-core</module>
-        <module>config.data</module>
-        <module>account.common</module>
-        <module>account.query</module>
-        <module>account.cmd</module>
+        <module>cqrs-es/cqrs-core</module>
+        <module>bank-account/config.data</module>
+        <module>bank-account/account.common</module>
+        <module>bank-account/account.query</module>
+        <module>bank-account/account.cmd</module>
     </modules>
 
     <dependencyManagement>
@@ -151,6 +152,11 @@
                 <groupId>org.graalvm.buildtools</groupId>
                 <artifactId>native-maven-plugin</artifactId>
                 <version>${native.maven.plugin.version}</version>
+                <configuration>
+                    <buildArgs>
+                        <buildArg>--no-fallback</buildArg>
+                    </buildArgs>
+                </configuration>
             </plugin>
         </plugins>
     </build>

@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
 @Accessors(chain = true)
-@Document(collation = "eventStore")
+@Document(collection = "eventStore")
 public class EventModel {
   @Id private String id;
   private ZonedDateTime timestamp;

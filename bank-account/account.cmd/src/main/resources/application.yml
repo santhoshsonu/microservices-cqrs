@@ -5,12 +5,10 @@ server:
 spring:
   data:
     mongodb:
-      host: localhost
-      port: 27017
-      database: bankingSystem
+      uri: mongodb://root:Passw0rd#007@mongodb:27017/bankingSystem?authSource=admin
 
   kafka:
     producer:
-      bootstrap-servers: localhost:9092
-      key-serializer: org.apache.kafka.common.serializatation.StringSerializer
-      value-serializer: org.springframework.kafka.support.serailizer.JsonSerializer
+      bootstrap-servers: kafka-broker-1:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer

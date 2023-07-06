@@ -6,6 +6,7 @@
         <artifactId>cqrs-sample</artifactId>
         <groupId>com.microservices.cqrs</groupId>
         <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -99,6 +100,9 @@
                 <artifactId>native-maven-plugin</artifactId>
                 <configuration>
                     <imageName>${project.name}</imageName>
+                    <buildArgs combine.children="append">
+                        <buildArg>--verbose</buildArg>
+                    </buildArgs>
                 </configuration>
             </plugin>
         </plugins>

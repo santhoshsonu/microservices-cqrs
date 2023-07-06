@@ -9,7 +9,7 @@ import com.microservices.cqrs.core.events.EventModel;
 import com.microservices.cqrs.core.exceptions.AggregateNotFoundException;
 import com.microservices.cqrs.core.exceptions.ConcurrencyException;
 import com.microservices.cqrs.core.infrastructure.EventStore;
-import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,8 @@ public class AccountEventStore implements EventStore {
   private final AccountEventProducer eventProducer;
 
   @Autowired
-  public AccountEventStore(EventStoreRepository eventStoreRepository, AccountEventProducer eventProducer) {
+  public AccountEventStore(
+      EventStoreRepository eventStoreRepository, AccountEventProducer eventProducer) {
     this.eventStoreRepository = eventStoreRepository;
     this.eventProducer = eventProducer;
   }
@@ -40,7 +41,7 @@ public class AccountEventStore implements EventStore {
       event.setVersion(version);
       EventModel model =
           new EventModel()
-              .setTimestamp(ZonedDateTime.now(ZoneId.of("UTC")))
+              .setTimestamp(ZonedDateTime.now(ZoneOffset.UTC))
               .setAggregateIdentifier(aggregateId)
               .setAggregateType(AccountAggregate.class.getTypeName())
               .setEventData(event)
