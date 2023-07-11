@@ -2,13 +2,12 @@ package com.microservices.cqrs.account.query.domain;
 
 import com.microservices.cqrs.core.domain.BaseEntity;
 import java.util.List;
-import java.util.Optional;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AccountRepository extends CrudRepository<BankAccount, String> {
-  Optional<BankAccount> findByAccountHolder(String accountHolder);
+  List<BankAccount> findByAccountHolder(String accountHolder);
 
   List<BaseEntity> findByBalanceGreaterThan(double balance);
 

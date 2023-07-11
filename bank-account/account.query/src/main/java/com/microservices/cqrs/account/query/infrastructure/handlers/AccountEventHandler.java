@@ -25,6 +25,7 @@ public class AccountEventHandler implements EventHandler {
     accountRepository.save(
         new BankAccount()
             .setId(event.getId())
+            .setAccountHolder(event.getAccountHolder())
             .setAccountType(event.getAccountType())
             .setBalance(event.getOpeningBalance())
             .setCreatedAt(event.getCreatedDate()));

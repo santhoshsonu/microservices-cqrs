@@ -1,9 +1,15 @@
 server:
   port: 5001
 
+
 spring:
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration
+      - org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration
   jpa:
-    database-platform: org.hibernate.dialect.MySQL8Dialect
+    database-platform: org.hibernate.dialect.MySQLDialect
+    open-in-view: false
     show-sql: false
     hibernate:
       ddl-auto: update
@@ -11,6 +17,7 @@ spring:
     url: jdbc:mysql://mysql:3306/bankingAccount?createDatabaseIfNotExist=true
     username: root
     password: Passw0rd#007
+    driver-class-name: com.mysql.cj.jdbc.Driver
   kafka:
     listener:
       ack-mode: MANUAL_IMMEDIATE

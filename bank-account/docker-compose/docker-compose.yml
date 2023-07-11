@@ -73,16 +73,16 @@ services:
     networks:
       - banking-network
 
-#  account-query:
-#    container_name: account-query
-#    build:
-#      context: ../account.query
-#      dockerfile: ../account.query/Dockerfile
-#    image: account-query:latest
-#    ports:
-#      - '5001:5001'
-#    networks:
-#      - banking-network
+  account-query:
+    container_name: account-query
+    build:
+      context: ../../
+      dockerfile: ./bank-account/account.query/Dockerfile
+    image: account-query:latest
+    ports:
+      - '5001:5001'
+    networks:
+      - banking-network
 
 volumes:
   mysql-data:
