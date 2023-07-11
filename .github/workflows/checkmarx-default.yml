@@ -19,8 +19,6 @@ on:
     types: [opened, reopened, synchronize]
     branches: [ "master" ]
 
-on: workflow_dispatch
-
 permissions:
   contents: read
 
